@@ -1,6 +1,7 @@
 #![warn(clippy::all, clippy::pedantic)]
 use std::io::stdin;
 
+#[derive(Debug)]
 struct Visitor {
     name: String,
     greeting: String,
@@ -21,7 +22,6 @@ impl Visitor {
 
 fn what_is_your_name() -> String {
     let mut your_name = String::new();
-
     stdin()
         .read_line(&mut your_name)
         .expect("Failed to read line");
@@ -29,10 +29,10 @@ fn what_is_your_name() -> String {
 }
 
 fn main() {
-    let visitor_list = [
+    let mut visitor_list = Vec::new();
+    visitor_list.push(
         Visitor::new("gavin", "Yo! Whatup G-dawg?!"),
-        Visitor::new("ashley", "Yo!  Whatup yo?!!"),
-    ];
+    );
 
     println!("Hello, what's your name?");
     let name = what_is_your_name();
